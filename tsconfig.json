@@ -6,7 +6,6 @@
       "@ts/*": ["src/types/*"],
       "@data/*": ["src/data/*"],
       "@utils/*": ["src/utils/*"],
-      "@layouts/*": ["src/layouts/*"],
     },
     "target": "es5",
     "lib": [
@@ -30,7 +29,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/pages/tech-stack/index.hsx"  ],
   "exclude": [
     "node_modules"
   ]
