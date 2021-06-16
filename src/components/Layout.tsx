@@ -12,7 +12,7 @@ const Layout = ({ children }: TLayout) => (
       <title>Angelo Aldecoa</title>
     </Head>
     <Navbar />
-    <main className="px-4">{children}</main>
+    <main className="px-4 pt-28">{children}</main>
   </>
 );
 
