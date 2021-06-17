@@ -8,9 +8,16 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function index({ projects }: { projects: TReadFilesSort }) {
-  if (projects.length === 0) return <div>Coming soon</div>;
+  if (projects.length === 0)
+    return (
+      <div>
+        <h1>Projects</h1>
+        <p>Under construction...</p>
+      </div>
+    );
   return (
     <div>
+      <h1>Projects</h1>
       <ul>
         {projects.map((post) => (
           <li key={post.name}>

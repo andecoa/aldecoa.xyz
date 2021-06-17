@@ -8,9 +8,16 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function index({ blog }: { blog: TReadFilesSort }) {
-  if (blog.length === 0) return <div>Coming soon</div>;
+  if (blog.length === 0)
+    return (
+      <div>
+        <h1>Blog</h1>
+        <p>Under construction...</p>
+      </div>
+    );
   return (
     <div>
+      <h1>Blog</h1>
       <ul>
         {blog.map((post) => (
           <li key={post.name}>
