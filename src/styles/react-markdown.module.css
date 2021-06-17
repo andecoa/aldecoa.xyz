@@ -1,0 +1,24 @@
+.reactMarkDown {
+  padding-bottom: 30px;
+}
+
+.reactMarkDown > * {
+  margin-bottom: 30px;
+}
+
+.reactMarkDown h1 {
+  margin-bottom: 5px;
+}
+
+.reactMarkDown h2 {
+  margin-bottom: 5px;
+}
+
+.reactMarkDown h3 {
+  margin-bottom: 5px;
+}
+
+.reactMarkDown > ul {
+  padding-left: 20px;
+  list-style: disc;
+}
