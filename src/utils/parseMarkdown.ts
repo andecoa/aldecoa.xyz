@@ -1,5 +1,9 @@
 import matter from "gray-matter";
-import TParsedMarkdown from "@ts/TParsedMarkdown";
+
+export type TParsedMarkdown = {
+  data: { pageTitle: string };
+  content: string;
+};
 
 /**
  * Parses a markdwown file with a YAML header
