@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a {
+  @apply border-b-2 border-dotted border-indigo-200;
+  padding-bottom: 2px;
+}
+
+a:hover,
+a:active, a.active {
+  @apply text-indigo-500 border-indigo-500;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.35rem;
+}
