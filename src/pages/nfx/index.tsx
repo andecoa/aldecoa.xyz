@@ -6,7 +6,7 @@ import type { TParsedMarkdown } from "@utils/parseMarkdown";
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data, content } = parseMarkdown(
-    "src/data/staticPages/networks-and-marketplaces.md"
+    "./src/data/staticPages/networks-and-marketplaces.md"
   );
   return {
     props: { data, content },

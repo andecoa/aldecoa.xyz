@@ -3,7 +3,7 @@ import readFilesSort from "@utils/readFilesSort";
 import type { TReadFilesSort } from "@utils/readFilesSort";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = readFilesSort("src/data/projects");
+  const projects = readFilesSort("./src/data/projects");
   return { props: { projects } };
 };
 
