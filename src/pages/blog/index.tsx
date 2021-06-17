@@ -4,6 +4,11 @@ import type { TReadFilesSort } from "@utils/readFilesSort";
 
 export const getStaticProps: GetStaticProps = async () => {
   const blog = readFilesSort("./src/data/blog");
+
+  if (blog.length === 1 && blog[0].name === ".gitkeep") {
+    return { props: { blog: [] } };
+  }
+
   return { props: { blog } };
 };
 

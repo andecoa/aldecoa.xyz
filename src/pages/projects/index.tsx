@@ -4,6 +4,11 @@ import type { TReadFilesSort } from "@utils/readFilesSort";
 
 export const getStaticProps: GetStaticProps = async () => {
   const projects = readFilesSort("./src/data/projects");
+
+  if (projects.length === 1 && projects[0].name === ".gitkeep") {
+    return { props: { projects: [] } };
+  }
+
   return { props: { projects } };
 };
 
