@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import useSanitizedPath from "@hooks/useSanitizedPath";
+import ThemeSwitcher from "@components/ThemeSwitcher";
 
 export default function index() {
   const [menu, toggleMenu] = useState<boolean>(false);
@@ -63,13 +64,15 @@ export default function index() {
             </Link>
           </li>
         </ul>
-        <div className="hidden md:block">
+        <div className="hidden md:flex ">
           <Link href="/about">
             <a className={sanitizedPath === "/about" ? "active" : ""}>About</a>
           </Link>
+          <ThemeSwitcher className="ml-4" />
         </div>
 
-        <div className="md:hidden">
+        <div className="md:hidden flex">
+          <ThemeSwitcher className="mr-4" />
           <button type="button" onClick={() => toggleMenu((isMenu) => !isMenu)}>
             {menu ? <IoClose size={30} /> : <IoMenu size={30} />}
           </button>

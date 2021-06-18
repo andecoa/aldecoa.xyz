@@ -11,7 +11,7 @@ const toPurge =
 module.exports = {
   jit: true,
   purge: toPurge,
-  // darkMode: "class",
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
