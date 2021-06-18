@@ -13,8 +13,10 @@ const Layout = ({ children }: TLayout) => (
       <title>Angelo Aldecoa</title>
     </Head>
     <ThemeProvider attribute="class">
-      <Navbar />
-      <main className="max-w-screen-lg m-auto px-4 pt-12">{children}</main>
+      <div className="transition-all">
+        <Navbar />
+        <main className="max-w-screen-lg m-auto px-4 pt-12">{children}</main>
+      </div>
     </ThemeProvider>
   </>
 );
