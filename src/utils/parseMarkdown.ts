@@ -1,8 +1,10 @@
 import matter from "gray-matter";
+import { statSync } from "fs";
 
 export type TParsedMarkdown = {
   data: { pageTitle: string };
   content: string;
+  dateCreated?: number;
 };
 
 /**
@@ -13,5 +15,7 @@ export type TParsedMarkdown = {
 export default function parseMarkdown(filepath: string): TParsedMarkdown {
   const { data, content } = matter.read(filepath);
   const { pageTitle } = data;
-  return { data: { pageTitle }, content };
+  const dateCreated = statSync(filepath).birthtime.getTime();
+
+  return { data: { pageTitle }, content, dateCreated };
 }
