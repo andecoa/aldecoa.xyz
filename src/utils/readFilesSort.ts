@@ -13,7 +13,7 @@ export default function readFilesSort(dir: string): TReadFilesSort {
   const files = readdirSync(fullPath);
   return files
     .map((file) => ({
-      name: file,
+      name: path.parse(file).name,
       dateCreated: statSync(`${fullPath}/${file}`).birthtime.getTime(),
     }))
     .sort((a, b) => a.dateCreated - b.dateCreated);
