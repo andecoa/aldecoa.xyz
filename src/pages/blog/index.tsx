@@ -1,36 +1,63 @@
-import { GetStaticProps } from "next";
 import readFilesSort from "@utils/readFilesSort";
-import type { TReadFilesSort } from "@utils/readFilesSort";
+import parseMarkdown from "@utils/parseMarkdown";
+import parseDate from "@utils/parseDate";
+import getReadTime from "@utils/getReadTime";
+import PageWrapper from "@components/PageWrapper";
+import { IoTimeOutline, IoCalendarOutline } from "react-icons/io5";
+import Link from "next/link";
+import type { GetStaticProps } from "next";
+import type { TBlogPost } from "@ts/content";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const blog = readFilesSort("./src/data/blog");
+  const blogPath = "./src/data/blog";
+  const blog = readFilesSort(blogPath);
+  const formattedBlog: TBlogPost[] = blog.map((post) => {
+    const { data, content } = parseMarkdown(`${blogPath}/${post.name}.md`);
+    return {
+      slug: post.name,
+      title: data.pageTitle,
+      date: post.dateCreated,
+      dateString: parseDate(post.dateCreated),
+      readTime: getReadTime(content),
+    };
+  });
 
-  if (blog.length === 1 && blog[0].name === ".gitkeep") {
-    return { props: { blog: [] } };
-  }
-
-  return { props: { blog } };
+  return { props: { blog: formattedBlog } };
 };
 
-export default function index({ blog }: { blog: TReadFilesSort }) {
+export default function BlogPage({ blog }: { blog: TBlogPost[] }) {
   if (blog.length === 0)
     return (
-      <div>
+      <PageWrapper pageTitle="Blog under construction...">
         <h1>Blog</h1>
         <p>Under construction...</p>
-      </div>
+      </PageWrapper>
     );
+
   return (
-    <div>
-      <h1>Blog</h1>
-      <ul>
+    <PageWrapper pageTitle="Angelo's Blog">
+      <h1 className="mb-12">Blog</h1>
+      <ul className="space-y-8">
         {blog.map((post) => (
-          <li key={post.name}>
-            <h2>{post.name}</h2>
-            <div>{post.dateCreated}</div>
+          <li key={post.slug} className="max-w-2xl">
+            <Link href={`/blog/${post.slug}`}>
+              <h3 className="font-bold text-lg hover:text-indigo-500">
+                {post.title}
+              </h3>
+            </Link>
+            <div className="flex justify-between w-60">
+              <div>
+                <IoCalendarOutline className="inline-block mr-2" />
+                <time dateTime={post.dateString}>{post.dateString}</time>
+              </div>
+              <div>
+                <IoTimeOutline className="inline-block mr-2" />
+                <span>{post.readTime} min</span>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
-    </div>
+    </PageWrapper>
   );
 }
