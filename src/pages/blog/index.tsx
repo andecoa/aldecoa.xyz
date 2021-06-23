@@ -41,9 +41,11 @@ export default function BlogPage({ blog }: { blog: TBlogPost[] }) {
         {blog.map((post) => (
           <li key={post.slug} className="max-w-2xl">
             <Link href={`/blog/${post.slug}`}>
-              <h3 className="font-bold text-lg hover:text-indigo-500">
-                {post.title}
-              </h3>
+              <a className="border-none">
+                <h3 className="font-bold text-lg inline-block hover:text-indigo-500">
+                  {post.title}
+                </h3>
+              </a>
             </Link>
             <div className="flex justify-between w-60">
               <div>
