@@ -26,7 +26,9 @@ const CodeBlock: CodeComponent = ({
       </SyntaxHighlighter>
     );
   }
-  return <code className={className}>{children}</code>;
+  return (
+    <code className="p-0.5 bg-indigo-100 dark:text-indigo-900">{children}</code>
+  );
 };
 
 export default CodeBlock;
