@@ -14,7 +14,7 @@ export default function index() {
 
   return (
     <div className="shadow text-lg font-bold">
-      <div className="relative max-w-screen-lg m-auto flex justify-between p-4 z-50">
+      <div className="relative max-w-screen-lg m-auto flex justify-between p-4 z-50 items-center">
         <div className="md:hidden">
           <Link href="/">
             <a className={sanitizedPath === "/" ? "active" : ""}>{`Aldecoa${
@@ -60,14 +60,26 @@ export default function index() {
           </li>
           <li>
             <Link href="/blog">
-              <a className={sanitizedPath === "/blog" ? "active" : ""}>Blog</a>
+              <a
+                className={
+                  sanitizedPath === "/blog" || sanitizedPath === "/blog/[slug]"
+                    ? "active"
+                    : ""
+                }
+              >
+                Blog
+              </a>
             </Link>
           </li>
         </ul>
-        <div className="hidden md:flex ">
-          <Link href="/about">
-            <a className={sanitizedPath === "/about" ? "active" : ""}>About</a>
-          </Link>
+        <div className="hidden md:flex md:items-start items-center">
+          <span>
+            <Link href="/about">
+              <a className={sanitizedPath === "/about" ? "active" : ""}>
+                About
+              </a>
+            </Link>
+          </span>
           <ThemeSwitcher className="ml-4" />
         </div>
 
