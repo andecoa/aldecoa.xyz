@@ -27,7 +27,7 @@ The example above that uses booleans can also work for strings, numbers, and oth
 
 ### useState with Arrays
 
-Arrays work the same way. The only confusing part about arrays is that resources on the internet tend to use the spread syntax which some people might not be familiar with (i.e. people who came from other programming languages). We can mutate arrays in the following ways:
+Arrays work the same way. The only confusing part about arrays is that resources on the internet tend to use the spread syntax which some people might not be familiar with. We can mutate arrays in the following ways:
 
 ```jsx
 const [colours, setColours] = useState(["red", "green"])
@@ -35,7 +35,7 @@ const [colours, setColours] = useState(["red", "green"])
 // push an element into the array using the spread syntax
 const addColour = (colour) => setState(currentCols => ([...currentCols, colour]))
 
-// the above is roughly equivalent to
+// the above is equivalent to
 const addColour = (colour) => setState(currentCols => {
 	const newCols = currentCols.concat([colour]) // creates a new array
 	return newCols // use newCols for the new value of `colours`
@@ -74,12 +74,10 @@ const deactivate = () => setUser(userSession => {
 // See https://reactjs.org/docs/update.html
 
 // add key-value pairs
-// I would never recommend adding key-value pairs dynamically, but here it is
 // the syntax is the same as when we update an existing key
 const createProperty = (k, v) => setUser(userSession => ({...userSession, k: v}))
 
 // delete key-value pair
-// I am against deleting object keys because it's better to just make values falsy
 const deleteKey = (k) => setUser(userSession => {
 	const sessionCopy = {...userSession}
 	delete sessionCopy[k]
@@ -87,7 +85,7 @@ const deleteKey = (k) => setUser(userSession => {
 })
 ```
 
-Objects are not hard to work with, but it becomes complicated when you have nested objects that reference other data. For complicated objects, either try to make them simpler or to use a library like [immutability-helper](https://github.com/kolodny/immutability-helper). I also personally never try to add or remove keys from my objects, but there are some cases where it can't be avoided, which is why there are examples above.
+Objects are not hard to work with, but it becomes complicated when you have nested objects that reference other data. For complicated objects, either try to make them simpler or to use a library like [immutability-helper](https://github.com/kolodny/immutability-helper).
 
 ## Dealing with expensive initial states
 
@@ -111,9 +109,11 @@ const [bookmarks, setBookmarks] = useState(getInitialBookmarks)
 
 Code that gets executed in the component function could get executed again and again as the component is re-rendered when its state is mutated.
 
-## Custom useState hook - localStorage
+## Bonus : Custom useState hook - useLocalStorage (part 1)
 
-Let's build a custom hook to connect our component to the browser local storage.
+Let's build a custom hook to connect our component to the browser local storage. React is good because you can use the built-in hooks, combine them, and customize them into your own custom hooks to do whatever you want. In this example, we're building a hook to get and set localStorage data. We can use this hook to save bookmarks, for example, and make them persist even when the browser is closed.
+
+Note that modifying the local storage is a side effect and should be handled by the `useEffect` hook instead. This is something we will improve on in the next article.
 
 ```jsx
 const useLocalStorage = (key, initialValue) => {
@@ -122,18 +122,17 @@ const useLocalStorage = (key, initialValue) => {
 			const rawValue = window.localStorage.getItem(key)
 			return rawValue ? JSON.parse(rawValue) : initialValue
 		} catch (err) {
-			console.log("Local storage is not working")
-			return initialValue
+			throw new Error("Local stroage error on mount")
 		}	
 	})
 	
 	const setEntry = (item) => {
 		try {
 			const entry= item instanceof Function ? item(data) : item;
-      setData(entry); // save entry into memory befoore putting into localStorage
+      setData(entry); // save entry into state before storing into local storage
       window.localStorage.setItem(key, JSON.stringify(entry)); // mutate localStorage
 		} catch (err) {
-			console.log("Local storage is not working or passed in a broken function")
+			throw new Error("Local storage error encountered when setting an item")
 		}
 	}
 
