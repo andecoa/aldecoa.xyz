@@ -93,8 +93,8 @@ export default function index() {
 
       {/* small screen menu */}
       <div
-        className={`md:hidden absolute top-0 flex justify-center items-center w-full h-full bg-white dark:bg-black z-10 transition-transform duration-300 transform ${
-          menu ? "translate-x-0" : "-translate-x-full"
+        className={`md:hidden fixed top-0 flex justify-center items-center w-full h-full bg-white dark:bg-black z-10 transition-transform duration-300 transform ${
+          menu ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <ul className="flex flex-col space-y-12 items-center">
