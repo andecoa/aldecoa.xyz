@@ -18,7 +18,7 @@ export default function index() {
         <div className="md:hidden">
           <Link href="/">
             <a className={sanitizedPath === "/" ? "active" : ""}>{`Aldecoa${
-              sanitizedPath === "/" ? "" : sanitizedPath
+              sanitizedPath === "/" ? "" : `/${sanitizedPath.split("/")[1]}`
             }`}</a>
           </Link>
         </div>
