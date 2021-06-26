@@ -5,10 +5,15 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--max_old_space_size=4096 next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^11.0.1",
     "@types/react": "^17.0.11",
+    "cross-env": "^7.0.3",
     "eslint-import-resolver-typescript": "^2.4.0",
     "gray-matter": "^4.0.3",
     "next": "10.2.3",
