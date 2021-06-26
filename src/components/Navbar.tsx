@@ -1,10 +1,14 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import useSanitizedPath from "@hooks/useSanitizedPath";
 import ThemeSwitcher from "@components/ThemeSwitcher";
 
-export default function index() {
+export default function Navbar({
+  setMounted,
+}: {
+  setMounted: Dispatch<SetStateAction<boolean>>;
+}) {
   const [menu, toggleMenu] = useState<boolean>(false);
   const sanitizedPath = useSanitizedPath();
 
@@ -80,11 +84,15 @@ export default function index() {
               </a>
             </Link>
           </span>
-          <ThemeSwitcher className="ml-4" />
+          <div className="ml-4">
+            <ThemeSwitcher setMounted={setMounted} />
+          </div>
         </div>
 
         <div className="md:hidden flex">
-          <ThemeSwitcher className="mr-4" />
+          <div className="mr-4">
+            <ThemeSwitcher setMounted={setMounted} />
+          </div>
           <button type="button" onClick={() => toggleMenu((isMenu) => !isMenu)}>
             {menu ? <IoClose size={30} /> : <IoMenu size={30} />}
           </button>
