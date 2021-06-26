@@ -19,7 +19,9 @@ const Layout = ({ children }: TLayout) => {
       <ThemeProvider attribute="class" defaultTheme="light">
         <div className={`transition-all ${mounted ? "visible" : "invisible"}`}>
           <Navbar setMounted={setMounted} />
-          <main className="max-w-screen-lg m-auto px-4 pt-12">{children}</main>
+          <main className="max-w-screen-lg m-auto px-4 pt-24 md:pt-32">
+            {children}
+          </main>
         </div>
       </ThemeProvider>
     </>
