@@ -1,9 +1,18 @@
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialOceanic } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
+import jsx from "react-syntax-highlighter/dist/cjs/languages/prism/jsx";
+import ts from "react-syntax-highlighter/dist/cjs/languages/prism/typescript";
+import python from "react-syntax-highlighter/dist/cjs/languages/prism/python";
 import type {
   CodeComponent,
   ReactMarkdownProps,
 } from "react-markdown/src/ast-to-react";
+
+SyntaxHighlighter.registerLanguage("javascript", js);
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("typescript", ts);
+SyntaxHighlighter.registerLanguage("python", python);
 
 const CodeBlock: CodeComponent = ({
   inline = false,
