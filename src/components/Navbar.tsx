@@ -17,7 +17,7 @@ export default function Navbar({
   }, [sanitizedPath]);
 
   return (
-    <div className="shadow text-lg font-bold">
+    <div className="fixed w-screen bg-white dark:bg-black shadow text-lg font-bold">
       <div className="relative max-w-screen-lg m-auto flex justify-between p-4 z-50 items-center">
         <div className="md:hidden">
           <Link href="/">
