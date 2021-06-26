@@ -1,5 +1,5 @@
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import { materialOceanic } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import okaidia from "react-syntax-highlighter/dist/cjs/styles/prism/okaidia";
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import jsx from "react-syntax-highlighter/dist/cjs/languages/prism/jsx";
 import ts from "react-syntax-highlighter/dist/cjs/languages/prism/typescript";
@@ -26,7 +26,7 @@ const CodeBlock: CodeComponent = ({
   if (!inline && match) {
     return (
       <SyntaxHighlighter
-        style={materialOceanic}
+        style={okaidia}
         language={match[1]}
         PreTag="div"
         showLineNumbers
