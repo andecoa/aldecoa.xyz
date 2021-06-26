@@ -134,7 +134,15 @@ export default function Navbar({
           </li>
           <li>
             <Link href="/blog">
-              <a className={sanitizedPath === "/blog" ? "active" : ""}>Blog</a>
+              <a
+                className={
+                  sanitizedPath === "/blog" || sanitizedPath === "/blog/[slug]"
+                    ? "active"
+                    : ""
+                }
+              >
+                Blog
+              </a>
             </Link>
           </li>
           <li>
