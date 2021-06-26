@@ -36,7 +36,9 @@ const CodeBlock: CodeComponent = ({
     );
   }
   return (
-    <code className="p-0.5 bg-indigo-100 dark:text-indigo-900">{children}</code>
+    <code className="p-1 pt-0.5 bg-indigo-100 dark:text-indigo-900 rounded text-sm">
+      {children}
+    </code>
   );
 };
 
