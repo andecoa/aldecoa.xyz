@@ -1,14 +1,10 @@
 import Link from "next/link";
-import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { useEffect, useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import useSanitizedPath from "@hooks/useSanitizedPath";
 import ThemeSwitcher from "@components/ThemeSwitcher";
 
-export default function Navbar({
-  setMounted,
-}: {
-  setMounted: Dispatch<SetStateAction<boolean>>;
-}) {
+export default function Navbar() {
   const [menu, toggleMenu] = useState<boolean>(false);
   const sanitizedPath = useSanitizedPath();
 
@@ -17,7 +13,7 @@ export default function Navbar({
   }, [sanitizedPath]);
 
   return (
-    <div className="fixed w-screen bg-white dark:bg-black shadow text-lg font-bold">
+    <div className="fixed w-screen bg-white dark:bg-black dark:text-white shadow text-lg font-bold">
       <div className="relative max-w-screen-lg m-auto flex justify-between p-4 z-50 items-center">
         <div className="md:hidden">
           <Link href="/">
@@ -85,13 +81,13 @@ export default function Navbar({
             </Link>
           </span>
           <div className="ml-4">
-            <ThemeSwitcher setMounted={setMounted} />
+            <ThemeSwitcher />
           </div>
         </div>
 
         <div className="md:hidden flex">
           <div className="mr-4">
-            <ThemeSwitcher setMounted={setMounted} />
+            <ThemeSwitcher />
           </div>
           <button type="button" onClick={() => toggleMenu((isMenu) => !isMenu)}>
             {menu ? <IoClose size={30} /> : <IoMenu size={30} />}
