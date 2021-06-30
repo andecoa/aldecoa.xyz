@@ -1,34 +1,22 @@
-import { useTheme } from "next-themes";
+import { useTheme } from "@hooks/ThemeProvider";
 import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
-const ThemeChanger = ({
-  setMounted,
-}: {
-  setMounted: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const [componentIsMounted, setComponentIsMounted] = useState<boolean>(false);
-  const { theme, setTheme } = useTheme();
+const ThemeChanger = () => {
+  const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    setComponentIsMounted(true);
-    setMounted(true);
-  }, []);
+  if (!theme) return null;
 
-  if (!componentIsMounted) return null;
+  if (theme === "dark")
+    return (
+      <button onClick={toggleTheme} type="button">
+        <IoMoonOutline size={30} />
+      </button>
+    );
 
   return (
-    <div>
-      {theme === "dark" ? (
-        <button onClick={() => setTheme("light")} type="button">
-          <IoMoonOutline size={30} />
-        </button>
-      ) : (
-        <button onClick={() => setTheme("dark")} type="button">
-          <IoSunnyOutline size={30} />
-        </button>
-      )}
-    </div>
+    <button onClick={toggleTheme} type="button">
+      <IoSunnyOutline size={30} />
+    </button>
   );
 };
 
